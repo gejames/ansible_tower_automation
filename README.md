@@ -6,8 +6,7 @@ A common path for many that are learning to automate with Ansible is to start sm
 
 But a new problem arises.  As your use of Tower grows and becomes more complex, how are you keeping track of changes within Tower?  You may have set up a Job Template for testing a new playbook and then never deleted it.  Is an auditor going to understand why you used a non-standard credential?  What if the name of a playbook changes? Did you remember to update it in your Job Templates?  
 
->The answer, of course, is to automate and document these changes with Ansible.  We can then use our existing version control process to track those changes.  Tower becomes another node to automate.
-Just like when we learned Ansible, we will start small.  We will create a playbook that configures a Job Template in Ansible Tower and then track our changes with git.
+The answer, of course, is to automate and document these changes with Ansible.  We can then use our existing version control process to track those changes.  Tower becomes another node to automate. Just like when we learned Ansible, we will start small.  We will create a playbook that configures a Job Template in Ansible Tower and then track our changes with git.
 
 
 
@@ -27,7 +26,7 @@ username: admin
 password: p4ssw0rd
 ```
 
-Next, let’s create a simple playbook that will add a Job Template to Tower.  We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  Again, we are starting small. The actual playbook does not matter.  Make sure to check the file into your version control system!
+Next, let’s create a simple playbook that will add a Job Template to Tower. Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into your version control system!
 
 
 
@@ -38,7 +37,7 @@ Next, let’s create a simple playbook that will add a Job Template to Tower.  W
   hosts: localhost
   gather_facts: false
 
-
+  tasks:
     - name: CREATE CISCO USERNAME UPDATE JOB TEMPLATE
         tower_job_template:
         name: CHANGE CISCO USER PASSWD

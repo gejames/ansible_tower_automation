@@ -1,0 +1,17 @@
+---
+- name: SETUP TOWER JOB TEMPLATE
+  hosts: localhost
+  gather_facts: false
+
+
+    - name: CREATE CISCO USERNAME UPDATE JOB TEMPLATE
+        tower_job_template:
+        name: CHANGE CISCO USER PASSWD
+        job_type: "run"
+        inventory: "cisco devices"
+        project: "Cisco Project"
+        playbook: "change_cisco_user_passwd.yml"
+        credential: "cisco_creds"
+        state: present
+        survey_enabled: no
+        tower_config_file: ./tower_cli.cfg
