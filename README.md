@@ -1,6 +1,6 @@
 # Automating Changes to Ansible Tower
 
-## Why should I automate changes to Ansible Tower? 
+## Why Should I Automate Changes to Ansible Tower? 
 
 As the complexity of any system grows, so does the need to document changes to that system. If you have been using the Ansible Automation Platform for a while now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You have probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT department. Most likely you have a robust DevOps process and are using a VCS,  such as git, to track changes to  your playbooks.  
 
