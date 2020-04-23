@@ -10,7 +10,7 @@ As an organization's use of Tower grows, you can see how it will become increasi
 
 Wouldn't it be great if we could use our knowledge of Ansible and our existing DevOps process to automate, and in turn document, those changes?  If we can write a playbook that configures those job templates, credentials, or inventories for us then we have a self-documenting system to configure Tower.   We can share our playbooks with colleagues so they can quickly deploy the same jobs.  If deploying Tower to the cloud, we have a way to add all our assets automatically and seamlessly.   
 
-In this article, I will demonstrate how we can leverage the open-source tool tower-cli and write playbooks that will do just that.   
+In this article, I will demonstrate how we can install the open-source tool tower-cli and write playbooks that will do just that.   
 
 ## Starting Small
 
@@ -22,7 +22,7 @@ Let's use Ansible and git to create the job template and track when it is change
 
 ## Requirements
 
-Start by installing ansible-tower-cli. This is the open-source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the cli.  It is possible to run it from another system, but additional steps are required.  Refer to the Ansible documentation [here](https://docs.ansible.com/ansible-tower/3.5.3/html/towerapi/tower_cli.html) for a deeper dive into tower-cli.
+Start by installing ansible-tower-cli. This is the open-source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the CLI.  It is possible to run it from another system, but additional steps are required.  Refer to the Ansible documentation [here](https://docs.ansible.com/ansible-tower/3.5.3/html/towerapi/tower_cli.html) for a deeper dive into tower-cli.
 
 Install tower-cli with the below command
 
@@ -100,16 +100,19 @@ $ git commit -m "updated playbook name to standard of vendor name first"
 ```
 
 
-We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  
+## Conclusion
 
-
+We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  As we configure more assets in Tower with Ansible, our infrasture is becming code that we can deploy as needed.  
 
 
 ## Further Reading
 
-If you would like to learn more about the complete list of modules we can use to configure Tower, you can find them [here](https://docs.ansible.com/ansible/latest/modules/list_of_web_infrastructure_modules.html#ansible-tower)
+If you would like to learn more about the complete list of modules we can use to configure Tower, you can find them [here](https://docs.ansible.com/ansible/latest/modules/list_of_web_infrastructure_modules.html#ansible-tower).
 
-If you would like to see a complete Tower Workflow configured with Ansible, including surveys, check out my [Ansible Tower Workflow Lab](https://github.com/gejames/Linux-Webserver-Tower-Lab)
+If you would like to see a complete Tower Workflow configured with Ansible, including surveys, check out my [Ansible Tower Workflow Lab](https://github.com/gejames/Linux-Webserver-Tower-Lab).
+
+
+
 
 
 
