@@ -4,13 +4,13 @@
 
 As the complexity of any system grows, so does the need to document changes to that system. If you have been using the Ansible Automation Platform for a while now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You have probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT department. Most likely you have a robust DevOps process and are using a VCS,  such as git, to track changes to  your playbooks.  
 
-For those new to the Ansible Automation Platform, Tower is the orchestration tool that provides a powerful web UI and API to control your Ansible playbooks.   Think of it as a central point to administer all the assets that are needed to run your Ansible jobs. Login credentials, inventories, and project repositories can all be configured and reused as needed.  Tower also provides scheduling and role based access control.   
+For those new to the Ansible Automation Platform, Tower is the orchestration tool that provides a powerful web UI and API to control your Ansible playbooks.   Think of it as a central point to administer all the assets that are needed to run your Ansible jobs. Login credentials, inventories, and project repositories can all be configured and reused as needed.  Tower also provides scheduling and role-based access control.   
 
-As an organization's use of Tower grows, you can see how it will become increasingly important to track and document changes to those assets. Is an auditor going to understand why you used a non-standard credential for a job? Or perhaps you are a consultant that deploys Tower for many clients and need a way to configure it quickly. Are you tired of writing the same survey everytime a new job template requires it?  
+As an organization's use of Tower grows, you can see how it will become increasingly important to track and document changes to those assets. Is an auditor going to understand why you used a non-standard credential for a job? Or perhaps you are a consultant that deploys Tower for many clients and need a way to configure it quickly. Are you tired of writing the same survey every time a new job template requires it?  
 
 Wouldn't it be great if we could use our knowledge of Ansible and our existing DevOps process to automate, and in turn document, those changes?  If we can write a playbook that configures those job templates, credentials, or inventories for us then we have a self-documenting system to configure Tower.   We can share our playbooks with colleagues so they can quickly deploy the same jobs.  If deploying Tower to the cloud, we have a way to add all our assets automatically and seamlessly.   
 
-In this article, I will demonstrate how we can leverage the open source tool tower-cli and write playbooks that will do just that.   
+In this article, I will demonstrate how we can leverage the open-source tool tower-cli and write playbooks that will do just that.   
 
 ## Starting Small
 
@@ -22,7 +22,7 @@ Let's use Ansible and git to create the job template and track when it is change
 
 ## Requirements
 
-Start by installing ansible-tower-cli. This is the open source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the cli.  It is possible to run it from another system, but additional steps are required.  Refer to the Ansible documentation [here](https://docs.ansible.com/ansible-tower/3.5.3/html/towerapi/tower_cli.html) for a deeper dive into tower-cli.
+Start by installing ansible-tower-cli. This is the open-source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the cli.  It is possible to run it from another system, but additional steps are required.  Refer to the Ansible documentation [here](https://docs.ansible.com/ansible-tower/3.5.3/html/towerapi/tower_cli.html) for a deeper dive into tower-cli.
 
 Install tower-cli with the below command
 
@@ -41,10 +41,11 @@ password: p4ssw0rd
 
 ## Creating the Job Template
 
-We could use tower-cli to create our job template from the command line, but we want to write a playbook to do that. Ansible provides many modules that can interface with tower-cli.  For our purposes, we'll be using the tower_job_template module.  Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into git.
+We could use tower-cli to create our job template from the command line, but we want to write a playbook to do that. Ansible provides many modules that can interface with tower-cli.  For our purposes, we'll be using the tower_job_template module.  Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already set up in Tower.  The actual playbook does not matter.  Make sure to check the file into git.
 
 
 ```
+$ vim job_template.yml
 ---
 - name: SETUP TOWER JOB TEMPLATE
   hosts: localhost
