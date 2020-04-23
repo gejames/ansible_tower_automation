@@ -2,9 +2,9 @@
 
 ## Why should I automate changes to Ansible Tower? 
 
-As the complexity of any system grows, so does the need to document any changes to that system.  If you have been using the Ansible Automation Platform for a while now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You've probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT organization. 
+As the complexity of any system grows, so does the need to document changes to that system. If you have been using the Ansible Automation Platform for a while now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You've probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT department. Most likely you have a robust version control process and are using a VCS,  such as git, to track changes to  your playbooks.  For those new to the Ansiblle Automation Platform, Tower is the orchestration tool that provides a powerful web UI and API to control our Ansible playbooks.   Think of it as a central point to administer all the assests that are needed to run our Ansible jobs. Login credentials, inventories, and project repositories, can all be configured and reused as needed.  Tower also provides scheduling and role based access control.   
 
-As your needs have grown, how are you keeping track of changes within Tower? Are you tired of writing the same survey everytime a new playbook requries it?  Is an auditor going to understand why you used a non-standard credential? Or perhaps you are a consultant that deploys Tower for many clients and needs a way to confugre Tower quickly. Wouldn't it be great if we could use our existing knowledge of Ansible to automate, and in turn doucment, those changes and re-use assets we already have?  
+As an organization's use of Tower grows, you can see how it will become increasingly important to track and document changes to those assests in Tower. Is an auditor going to understand why you used a non-standard credential for a job? Or perhaps you are a consultant that deploys Tower for many clients and need a way to confugre it quickly. Are you tired of writing the same survey everytime a new job template requries it?  Wouldn't it be great if we could use our knowledge of Ansible and our existing version control process to automate, and in turn doucment, those changes?  If we can write a playbook that configures those job templates, credentials, or inventories for us then we have a self-docmenting system to configure Tower.   We can share our playbooks with collegues so they can quickly deploy the same job templates.  If deploying Tower to the cloud, we have a way to add all our assets automatically and seamlessly.   
 
 In this article, I will deomonstrate how we can leverage the open source tool tower-cli and write playbooks that will do just that.   
 
@@ -16,13 +16,15 @@ One of the more common assests in Tower is the job template.  This is what we cr
 
 ## Requirements
 
-Start by installing ansible-tower-cli. This is the open source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the cli.
+Start by installing ansible-tower-cli. This is the open source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the cli.  Is it possible to run it from another system, but additional steps are required.  Refer to the Ansible documentation [here](https://docs.ansible.com/ansible-tower/3.5.3/html/towerapi/tower_cli.html) for a deeper dive into tower-cli.
+
+Install tower-cli with the below command
 
  ```
  $ pip install ansible-tower-cli
  ```
 
-We also need a credentials file so tower-cli knows how to login to Tower.  Use your favorite text editor to create a file called tower_cli.cfg at the root of your project and add in your Tower username and password
+We also need a credentials file so tower-cli knows how to login to Tower.  Use your favorite text editor to create a file called tower_cli.cfg at the root of your project and add in your Tower username and password.  You can also add this file to your .gitignore so it's not tracked.
 
 ```
 $ vim tower_cli.cfg
@@ -31,7 +33,7 @@ username: admin
 password: p4ssw0rd
 ```
 
-We could use tower-cli to create our job template from the command line, but we want to write a playbook to do that. Ansible provides many modules that can interfact with tower-cli.  For our purposes, we'll be using the tower_job_template module.  Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into your version control system!
+We could use tower-cli to create our job template from the command line, but we want to write a playbook to do that. Ansible provides many modules that can interface with tower-cli.  For our purposes, we'll be using the tower_job_template module.  Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into git!
 
 
 ```
@@ -68,6 +70,7 @@ $ git commit -m "added job_template.yml file"
 
 
 ##
+
 Now, let’s say a few months later you decide to standardize all playbook names to start with the vendor name.
 
 ```"change_cisco_user_passwd.yml"```  becomes ```"cisco_user_passwd.yml"```
@@ -87,7 +90,7 @@ $ git commit -m "updated playbook name to standard of vendor name first"
 ```
 
 
-We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.
+We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  
 
 
 
