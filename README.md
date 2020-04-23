@@ -2,7 +2,7 @@
 
 ## Why should I automate changes to Ansible Tower? 
 
-As the complexity of any system grows, so does the need to document any changes to that system.  If you have been using the Ansible Automation Platform for ahwile now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You've probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT organization. 
+As the complexity of any system grows, so does the need to document any changes to that system.  If you have been using the Ansible Automation Platform for a while now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You've probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT organization. 
 
 As your needs have grown, how are you keeping track of changes within Tower? Are you tired of writing the same survey everytime a new playbook requries it?  Is an auditor going to understand why you used a non-standard credential? Or perhaps you are a consultant that deploys Tower for many clients and needs a way to confugre Tower quickly. Wouldn't it be great if we could use our existing knowledge of Ansible to automate, and in turn doucment, those changes and re-use assets we already have?  
 
@@ -16,7 +16,7 @@ One of the more common assests in Tower is the job template.  This is what we cr
 
 ## Requirements
 
-Start by installing ansible-tower-cli. This is the open source project that we can leverage to make changes for us in Tower. For simplicity, we'll install on our Tower server at the cli.
+Start by installing ansible-tower-cli. This is the open source project that we can leverage to make changes for us in Tower. For simplicity, we'll install it on our Tower server at the cli.
 
  ```
  $ pip install ansible-tower-cli
@@ -31,9 +31,7 @@ username: admin
 password: p4ssw0rd
 ```
 
-Next, let’s create a simple playbook that will add a Job Template to Tower. Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into your version control system!
-
-
+We could use tower-cli to create our job template from the command line, but we want to write a playbook to do that. Ansible provides many modules that can interfact with tower-cli.  For our purposes, we'll be using the tower_job_template module.  Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into your version control system!
 
 
 ```
@@ -46,15 +44,15 @@ Next, let’s create a simple playbook that will add a Job Template to Tower. Ag
 
     - name: CREATE CISCO USERNAME UPDATE JOB TEMPLATE
         tower_job_template:
-        name: CHANGE CISCO USER PASSWD
-        job_type: "run"
-        inventory: "cisco devices"
-        project: "Cisco Project"
-        playbook: "change_cisco_user_passwd.yml"
-        credential: "cisco_creds"
-        state: present
-        survey_enabled: no
-        tower_config_file: ./tower_cli.cfg
+            name: CHANGE CISCO USER PASSWD
+            job_type: "run"
+            inventory: "cisco devices"
+            project: "Cisco Project"
+            playbook: "change_cisco_user_passwd.yml"
+            credential: "cisco_creds"
+            state: present
+            survey_enabled: no
+            tower_config_file: ./tower_cli.cfg
 ```
 
 Let git know to add the file to our repo.
@@ -87,6 +85,14 @@ Commit your changes with a comment so we have a paper trail of why the change wa
 $ git add job_template.yml
 $ git commit -m "updated playbook name to standard of vendor name first"
 ```
+
+
+We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.
+
+
+
+
+
 
 
 
