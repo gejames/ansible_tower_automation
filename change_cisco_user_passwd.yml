@@ -1,0 +1,20 @@
+---
+- name: SETUP TOWER JOB TEMPLATE
+  hosts: localhost
+  gather_facts: false
+
+  tasks: 
+
+
+- name: REMOVE EXISTING USERS
+  ios_user:
+    purge: yes
+  
+    
+- name: ADD NEW USERNAME
+  ios_user: 
+     name: "{{ cisco_new_user }}"
+     configured_password: "{{ cisco_user_password }}"
+     password_type: password
+     privilege: "{{ cisco_user_priv }}"
+     state: present

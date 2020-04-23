@@ -3,14 +3,15 @@
   hosts: localhost
   gather_facts: false
 
+  tasks: 
 
     - name: CREATE CISCO USERNAME UPDATE JOB TEMPLATE
-        tower_job_template:
+      tower_job_template:
         name: CHANGE CISCO USER PASSWD
         job_type: "run"
         inventory: "cisco devices"
         project: "Cisco Project"
-        playbook: "change_cisco_user_passwd.yml"
+        playbook: "config.yml"
         credential: "cisco_creds"
         state: present
         survey_enabled: no

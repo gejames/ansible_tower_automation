@@ -1,17 +1,22 @@
 # Automating Changes to Ansible Tower
 
+## Why should I automate changes to Ansible Tower? 
 
+As the complexity of any system grows, so does the need to document any changes to that system.  If you have been using the Ansible Automation Platform for ahwile now, you may have built up a large collection of playbooks and are using Ansible Tower to centrally orchestrate their deployment.  You've probably configured a few workflows and built surveys to extend the reach of Tower beyond your IT organization. 
 
-A common path for many that are learning to automate with Ansible is to start small. Pick a short and mundane task and automate it. Do you need to change the admin passwords on all your Cisco switches at once? Let Ansible handle it. As your skill level grows, more complex tasks can be added. You will probably start using a version control system to manage your playbooks. Overtime, you may want to orchestrate the deployments of your playbooks with Ansible Tower.  This allows you set up job templates for HR to run their own playbooks without even knowing what a module is. You don't have to worry about the new junior network admin doing a debug on the wrong router.  Life is good.  
+As your needs have grown, how are you keeping track of changes within Tower? Are you tired of writing the same survey everytime a new playbook requries it?  Is an auditor going to understand why you used a non-standard credential? Or perhaps you are a consultant that deploys Tower for many clients and needs a way to confugre Tower quickly. Wouldn't it be great if we could use our existing knowledge of Ansible to automate, and in turn doucment, those changes and re-use assets we already have?  
 
-But a new problem arises.  As your use of Tower grows and becomes more complex, how are you keeping track of changes within Tower?  You may have set up a Job Template for testing a new playbook and then never deleted it.  Is an auditor going to understand why you used a non-standard credential?  What if the name of a playbook changes? Did you remember to update it in your Job Templates?  
+In this article, I will deomonstrate how we can leverage the open source tool tower-cli and write playbooks that will do just that.   
 
-The answer, of course, is to automate and document these changes with Ansible.  We can then use our existing version control process to track those changes.  Tower becomes another node to automate. Just like when we learned Ansible, we will start small.  We will create a playbook that configures a Job Template in Ansible Tower and then track our changes with git.
+## Starting Small
 
+A frequent path for many that are learning Ansible is to start small.  We shall do the same here.  We'll pick a mundane task and automate it. 
 
+One of the more common assests in Tower is the job template.  This is what we create when we want to run a playbook. But, do you recall why you created them all?  Did you remember to update all the job templates when a playbook was renamed?  Lets use Ansible and git to create the job template and track when it is changed.
 
-##
-Start by installing ansible-tower-cli. This is an open source project that we can leverage to make changes for us in Tower.   You can install it on Tower at the shell or another system running Ansible, as long as it can reach Tower by ssh.
+## Requirements
+
+Start by installing ansible-tower-cli. This is the open source project that we can leverage to make changes for us in Tower. For simplicity, we'll install on our Tower server at the cli.
 
  ```
  $ pip install ansible-tower-cli
@@ -38,6 +43,7 @@ Next, let’s create a simple playbook that will add a Job Template to Tower. Ag
   gather_facts: false
 
   tasks:
+
     - name: CREATE CISCO USERNAME UPDATE JOB TEMPLATE
         tower_job_template:
         name: CHANGE CISCO USER PASSWD
