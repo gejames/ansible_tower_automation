@@ -16,7 +16,9 @@ In this article, I will demonstrate how we can leverage the open source tool tow
 
 A frequent path for many that are learning Ansible is to start small.  We shall do the same here.  We'll pick a mundane task and automate it. 
 
-One of the more common assests in Tower is the job template.  This is what we create when we want to run a playbook. But, do you recall why you created them all?  Did you remember to update all the job templates when a playbook was renamed?  Lets use Ansible and git to create the job template and track when it is changed.
+One of the more common assests in Tower is the job template.  This is what we create when we want to run a playbook. However, do you recall why you created them all?  Did you remember to update all the job templates when a playbook was renamed?  
+
+Lets use Ansible and git to create the job template and track when it is changed.
 
 ## Requirements
 
