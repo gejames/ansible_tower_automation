@@ -18,7 +18,7 @@ A frequent path for many that are learning Ansible is to start small.  We shall 
 
 One of the more common assests in Tower is the job template.  This is what we create when we want to run a playbook. However, do you recall why you created them all?  Did you remember to update all the job templates when a playbook was renamed?  
 
-Lets use Ansible and git to create the job template and track when it is changed.
+Let's use Ansible and git to create the job template and track when it is changed.
 
 ## Requirements
 
@@ -100,7 +100,9 @@ $ git commit -m "updated playbook name to standard of vendor name first"
 We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  
 
 
-If you would like to learn more about the complete list of moduesl we can use to configure Tower, you can find them [here] 
+If you would like to learn more about the complete list of modules we can use to configure Tower, you can find them [here](https://docs.ansible.com/ansible/latest/modules/list_of_web_infrastructure_modules.html#ansible-tower)
+
+If you would like to see a complete Tower Workflow configured with Ansible, including surveys, check out my [Ansible Tower Workflow Lab][(https://github.com/gejames/Linux-Webserver-Tower-Lab)
 
 
 
