@@ -39,6 +39,8 @@ username: admin
 password: p4ssw0rd
 ```
 
+## Creating the Job Template
+
 We could use tower-cli to create our job template from the command line, but we want to write a playbook to do that. Ansible provides many modules that can interface with tower-cli.  For our purposes, we'll be using the tower_job_template module.  Again, we are starting small. We’ll assume you have an existing playbook to change the username and password on a Cisco device and have the corresponding inventory, project, and credential assets already setup in Tower.  The actual playbook does not matter.  Make sure to check the file into git!
 
 
@@ -98,6 +100,9 @@ $ git commit -m "updated playbook name to standard of vendor name first"
 
 
 We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  
+
+
+
 
 ## Further Reading
 
