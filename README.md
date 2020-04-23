@@ -103,7 +103,7 @@ We now have a reusable playbook we can use to create job templates and we've doc
 
 If you would like to learn more about the complete list of modules we can use to configure Tower, you can find them [here](https://docs.ansible.com/ansible/latest/modules/list_of_web_infrastructure_modules.html#ansible-tower)
 
-If you would like to see a complete Tower Workflow configured with Ansible, including surveys, check out my [Ansible Tower Workflow Lab][(https://github.com/gejames/Linux-Webserver-Tower-Lab)
+If you would like to see a complete Tower Workflow configured with Ansible, including surveys, check out my [Ansible Tower Workflow Lab](https://github.com/gejames/Linux-Webserver-Tower-Lab)
 
 
 
