@@ -112,7 +112,7 @@ If you would like to learn more about the complete list of modules we can use to
 
 If you would like to see a complete Tower Workflow configured with Ansible, including surveys, check out my [Ansible Tower Workflow Lab](https://github.com/gejames/Linux-Webserver-Tower-Lab).
 
-
+[Link](https://github.com/gejames/ansible_tower_automation) to this article on Github.
 
 
 
