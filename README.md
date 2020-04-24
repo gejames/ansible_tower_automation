@@ -79,9 +79,9 @@ $ git commit -m "added job_template.yml file"
 At this point, you will go through your normal process for deploying new playbooks.  All fully documented.  
 
 
-## Making Our Update
+## Tracking Our Changes
 
-Now, let’s say a few months later you decide to standardize all playbook names to start with the vendor name.
+Let’s say a few months later you decide to standardize all playbook names to start with the vendor name.
 
 ```"change_cisco_user_passwd.yml"```  becomes ```"cisco_user_passwd.yml"```
 
@@ -99,10 +99,11 @@ $ git add job_template.yml
 $ git commit -m "updated playbook name to standard of vendor name first"
 ```
 
+Once you run the playbook, Ansible will update the job template.   
 
 ## Conclusion
 
-We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  As we configure more assets in Tower with Ansible, our infrasture is becming code that we can deploy as needed.  
+We now have a reusable playbook we can use to create job templates and we've documented why it was updated when our playbook name changed.  As we configure more assets in Tower with Ansible, our infrastructure is becoming code that we can deploy as needed.  
 
 
 ## Further Reading
